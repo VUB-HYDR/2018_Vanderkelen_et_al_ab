@@ -55,7 +55,7 @@ Version 0.1.0 - April 2018
 
 ## License
 This project is licensed under the MIT License. See also the 
-[LICENSE](./LICENSE) 
+[LICENSE](./LICENSE.md) 
 file.
 
 ## References
