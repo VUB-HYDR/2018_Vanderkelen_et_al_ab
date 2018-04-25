@@ -41,7 +41,8 @@ folder. Then, by running the
 [PFT_lin.R ](./biascorrection/PFT_lin.R ) or 
 [QUANT.R](./biascorrection/QUANT.R) scripts, a linear parametric bias correction 
 or a quantile mapping bias correction method is applied on the WB terms using 
-the R package `qmap`. For details on these methods, see Vanderkelen et 
+the R package [qmap](https://cran.r-project.org/web/packages/qmap/index.html). 
+For details on these methods, see Vanderkelen et 
 al., 2018b; section 2.4. 
 
 ### 4. plotting
