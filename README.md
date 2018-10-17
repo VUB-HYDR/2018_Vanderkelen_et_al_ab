@@ -25,7 +25,7 @@ shapefiles of the lake and the data used in the CN method.
 
 Run the WB model in the 
 [main.m](./WBmodel/main.m)
-script. Here, users can also choose different options for the model. 
+script. Here, users can also choose different options for the model (e.g. type of simulations, dam management scenario etc.) 
 
 ### 2. calculateWBterms
 Folder containing the scripts to calculate the WB terms for the CORDEX 
