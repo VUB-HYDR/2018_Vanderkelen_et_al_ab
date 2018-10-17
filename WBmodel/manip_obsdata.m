@@ -4,7 +4,6 @@
 
 % manipulations on P
 % ------------------------------------------------------------------------
-%P = flipud(P); 
 begin_p = length(P)-ndays; 
 P = P(:,:,begin_p:length(P));
  
@@ -42,7 +41,11 @@ end
 E = -LHF/Lvap * 3600 * 24; 
 E = E*10^(-3);
 
-
 for i = 1:size(E,3)
  E_lake(:,:,i) = mask_lake_intp.*E(:,:,i);
 end
+
+E_lake_cut = E_lake(1:length(lon_LHF_remap),1:length(lat_LHF_remap),:); 
+
+
+

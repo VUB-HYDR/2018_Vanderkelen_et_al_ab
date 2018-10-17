@@ -17,7 +17,7 @@ if file_exist == 2
 
     
 % load data
-lat = rot90(ncread(file_name, 'lat')); % latitude [° N] (axis: Y)
+lat = rot90(ncread(file_name, 'lat'));  % latitude [° N] (axis: Y)
 lon = rot90(ncread(file_name, 'lon')); % longitude [° E] (axis: X)
 VAR =       ncread(file_name, VAR  ) ; % Total precipitation [mm]
 

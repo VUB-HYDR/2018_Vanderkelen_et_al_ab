@@ -69,7 +69,7 @@ L_color  =colors(11,:);
 
 %% plotting
 
-fields = fieldnames(E_lake_ev); 
+fields = fieldnames(P_ev); 
 
 
 % ------------------------------------------------------------------------

@@ -23,7 +23,7 @@ amc_days = 5;
 for t = 1:ndays
      % Calculate terms of WB
      P_mean(t) = nanmean(nanmean(P_lake(:,:,t))); % average all precip [m]
-     if (isnan(P_mean(t))) P_mean(t) = 0; end
+     if (isnan(P_mean(t))||P_mean(t) <0) P_mean(t) = 0; end
      E_mean(t) = nanmean(nanmean(E_lake(:,:,t))); % average all evap [m]
 end
 

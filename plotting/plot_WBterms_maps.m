@@ -34,7 +34,7 @@ caxes.prec = [0      3000];
 colormaps.prec(1,:) = [1 1 1];
 
 % plot spatial distribution
-mf_plot_lake_subplot(lon_P, lat_P, P_ysummean, caxes.prec, colormaps.prec,res_grid,'Annual precipitation','mm/year',0,ax1,'a)'); 
+mf_plot_lake_subplot(lon_grid, lat_grid, P_ysummean, caxes.prec, colormaps.prec,res_grid,'Annual precipitation','mm/year',0,ax1,' '); 
 
 
 

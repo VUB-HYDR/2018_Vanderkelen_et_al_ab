@@ -19,6 +19,11 @@ axcolor = [0.3 0.3 0.3];
 colors = mf_colors;
 colors(24:25,:)= rand(2,3); 
 
+% define one (leap) year days and month
+year_begin  = [2016, 1, 1, 0,0,0]; % 2016 is leap year
+year_end    = [2016,12,31,23,0,0];
+year_vec  = datevec(datenum(year_begin):1:datenum(year_end));
+month_day = year_vec(:,2:3);
 
 % define ticks and ticklabels for one year
 months_label = ['Jan';'Feb';'Mar';'Apr';'May';'Jun';'Jul';'Aug';'Sep';'Oct';'Nov';'Dec'];
@@ -85,6 +90,7 @@ labels_fut = {'2006','2010','2015','2020','2025','2030','2035','2040',...
     '2090','2095','2100'};
 
 
+
 %% plotting scripts paper 1
 
 % 2. Lake Victoria historical water levels
@@ -148,12 +154,12 @@ labels_fut = {'2006','2010','2015','2020','2025','2030','2035','2040',...
 
 % 6. Barplots of projected climate change
 
-% plot_diffbars
+% plot_barplots_historical
 
 % 8. Lake level projections
 
-% plot_LL_allscen
+% plot_L_total
 
 % 9. outflow projections
 
-% plot_Qout_allscen
+% plot_Qout_total

@@ -21,8 +21,8 @@ elseif flag_run == 2
         time_end    = [2008,12,31,23,0,0];
     end
 elseif flag_run == 3
-   time_begin  = [1950, 1, 1, 0,0,0];
-   time_end    = [2004,12,31,23,0,0];
+   time_begin  = [1951, 1, 1, 0,0,0];
+   time_end    = [2005,12,31,23,0,0];
 elseif flag_run == 4 || flag_run == 5 || flag_run == 6
    time_begin  = [2006, 1, 1, 0,0,0];
    time_end    = [2100,12,31,23,0,0]; 
@@ -40,7 +40,8 @@ ndays = length(date);
 % Observations
 time_begin_obs  = [1993, 1, 1, 0,0,0]; % datum van eerste dahiti data beschikb
 time_end_obs    = [2014,12,31,23,0,0];
-
+  
+   
 date_vec_obs= datevec(datenum(time_begin_obs ):1:datenum(time_end_obs ));
 date_obs = date_vec_obs(:,1:3); 
 
@@ -59,8 +60,8 @@ date_vec_bc= datevec(datenum(time_begin_bc ):1:datenum(time_end_bc ));
 date_bc= date_vec_bc(:,1:3); 
 
 % Historical
-time_begin_hist  = [1950, 1, 1, 0,0,0]; 
-time_end_hist   = [2004,12,31,23,0,0];
+time_begin_hist  = [1951, 1, 1, 0,0,0]; 
+time_end_hist   = [2005,12,31,23,0,0];
 
 date_vec_hist= datevec(datenum(time_begin_hist):1:datenum(time_end_hist));
 date_hist = date_vec_hist(:,1:3);

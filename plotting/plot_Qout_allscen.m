@@ -4,7 +4,7 @@
 % ------------------------------------------------------------------------
 
 % flags 
-flag_bc = 1;  % 1: QUANT bias correction, 2: PFT bias correction
+flag_bc = 2;  % 1: QUANT bias correction, 2: PFT bias correction
 
 % define percentiles
 prct_low = 5; 
@@ -52,15 +52,11 @@ elseif flag_bc ==2 % PFT
 
 end
 
-% remove HIRHAM and CRCM5 CanESM2
-n_HIRHAM = 5; 
-n_CRCM = 7; 
-Qout_rcp45i = exclude_sim(Qout_rcp45,n_CRCM);
-Qout_rcp45ii = exclude_sim(Qout_rcp45i,n_HIRHAM); 
-Qout_rcp85i = exclude_sim(Qout_rcp85,n_HIRHAM); 
-clear Qout_rcp45 Qout_rcp85
+% remove HIRHAM 
+n_HIRHAM = 7; 
+Qout_rcp45ii = exclude_sim(Qout_rcp45,n_HIRHAM); 
+clear Qout_rcp45
 Qout_rcp45 = Qout_rcp45ii;
-Qout_rcp85 = Qout_rcp85i;
 
 
 % manipulate
@@ -103,7 +99,7 @@ Qout_yearmean_rcp26(length(Qout_yearmean_rcp26));
 Qout_yearmean_rcp45(length(Qout_yearmean_rcp45));
 Qout_yearmean_rcp85(length(Qout_yearmean_rcp85));
 
-Qout_mean_l = (mean(Qout_mean_l_rcp26)+mean(Qout_mean_l_rcp45)+mean(Qout_mean_l_rcp85))/3
+%Qout_mean_l = (mean(Qout_mean_l_rcp26)+mean(Qout_mean_l_rcp45)+mean(Qout_mean_l_rcp85))/3
 % plot
 x = 1:length(min_Qout_yearmean_rcp26); 
 x2 = [x, fliplr(x)];
@@ -149,7 +145,7 @@ set(gca, 'Fontsize', label_size, 'Fontweight', 'Bold','Xcolor', axcolor,...
 ylabel('outlfow (10^6 m^3/day)','Fontsize', ylabel_size, 'Fontweight', 'Bold', 'color', axcolor)
     grid on
 xlim([1 length(years)-1])    
-ylim([0 350])
+ylim([0 300])
 
 %% subplot 2: outflow following Agreed Curve
 % load
@@ -164,12 +160,11 @@ elseif flag_bc ==2 % PFT
     load Qout_rcp26_ac_PFT.mat 
 end
 
-% remove HIRHAM and CRCM5 CanESM2
-n_HIRHAM = 5; 
-n_CRCM = 7; 
-Qout_rcp45i = exclude_sim(Qout_rcp45,n_CRCM);
-Qout_rcp45ii = exclude_sim(Qout_rcp45i,n_HIRHAM); 
-Qout_rcp85i = exclude_sim(Qout_rcp85,n_HIRHAM); 
+% remove HIRHAM
+n_HIRHAM8 = 5; 
+n_HIRHAM = 7; 
+Qout_rcp45ii = exclude_sim(Qout_rcp45,n_HIRHAM); 
+Qout_rcp85i = exclude_sim(Qout_rcp85,n_HIRHAM8); 
 clear Qout_rcp45 Qout_rcp85
 Qout_rcp45 = Qout_rcp45ii;
 Qout_rcp85 = Qout_rcp85i;
@@ -263,8 +258,7 @@ set(gca, 'Fontsize', label_size, 'Fontweight', 'Bold','Xcolor', axcolor,...
 ylabel('outlfow (10^6 m^3/day)','Fontsize', ylabel_size, 'Fontweight', 'Bold', 'color', axcolor)
     grid on
 xlim([1 length(years)-1])    
-ylim([0 350])
-
+ylim([0 300])
 
 
 % annotations and title
@@ -278,6 +272,257 @@ annotation(figure1,'textbox',...
     'FitBoxToText','off');
 
 annotation(figure1,'textbox',...
+    [0.133552083333333 0.418269230769231 0.0161875 0.032051282051282],...
+    'String','b)',...
+    'LineStyle','none',...
+    'FontWeight','bold',...
+    'FontSize',14,...
+    'Color', axcolor, ...
+    'FitBoxToText','off');
+
+[ax,h]=subtitle(title_large); 
+    h.FontWeight = 'Bold';
+    h.FontSize =  14;
+    h.Color = axcolor; 
+%% subplot 3: outflow following constant outflow scenarios. 
+% load
+figure2 = figure()
+subplot(2,1,1)
+if flag_bc == 1 % QUANT 
+    load Qout_rcp85_max_QUANT.mat 
+    load Qout_rcp45_max_QUANT.mat 
+    load Qout_rcp26_max_QUANT.mat  
+elseif flag_bc ==2 % PFT
+    load Qout_rcp85_max_PFT.mat 
+    load Qout_rcp45_max_PFT.mat
+    load Qout_rcp26_max_PFT.mat 
+end
+
+% remove HIRHAM
+n_HIRHAM = 7; 
+Qout_rcp45ii = exclude_sim(Qout_rcp45,n_HIRHAM); 
+clear Qout_rcp45 
+Qout_rcp45 = Qout_rcp45ii;
+
+
+% manipulate
+nm_rcp45 = size(Qout_rcp45,1); 
+nm_rcp26 = size(Qout_rcp26,1);
+nm_rcp85 = size(Qout_rcp85,1);
+
+% calculate annual mean outflow
+for i = 1:nm_rcp26
+    for t = 1:(length(years)-1)
+             Qout_yearmean_rcp26(i,t) = nanmean(Qout_rcp26(i,(ind_year(t):(ind_year(t+1)-1)))); 
+    end 
+end
+for i = 1:nm_rcp45
+    for t = 1:(length(years)-1)
+             Qout_yearmean_rcp45(i,t) = nanmean(Qout_rcp45(i,(ind_year(t):(ind_year(t+1)-1)))); 
+    end 
+end
+for i = 1:nm_rcp85
+    for t = 1:(length(years)-1)
+             Qout_yearmean_rcp85(i,t) = nanmean(Qout_rcp85(i,(ind_year(t):(ind_year(t+1)-1)))); 
+    end 
+end
+ 
+% define ranges
+min_Qout_yearmean_rcp45 = prctile(Qout_yearmean_rcp45,[prct_low],1); 
+min_Qout_yearmean_rcp85= prctile(Qout_yearmean_rcp85,[prct_low],1); 
+min_Qout_yearmean_rcp26 = prctile(Qout_yearmean_rcp26,[prct_low],1); 
+
+max_Qout_yearmean_rcp85 = prctile(Qout_yearmean_rcp85,[prct_high],1);    
+max_Qout_yearmean_rcp45 = prctile(Qout_yearmean_rcp45,[prct_high],1);     
+max_Qout_yearmean_rcp26 = prctile(Qout_yearmean_rcp26,[prct_high],1); 
+
+% calculate difference on end of period
+diff_Qout_rcp26_ac = max_Qout_yearmean_rcp26(length(max_Qout_yearmean_rcp26)) - min_Qout_yearmean_rcp26(length(max_Qout_yearmean_rcp26)) 
+diff_Qout_rcp45_ac = max_Qout_yearmean_rcp45(length(max_Qout_yearmean_rcp26)) - min_Qout_yearmean_rcp45(length(max_Qout_yearmean_rcp26))
+diff_Qout_rcp85_ac = max_Qout_yearmean_rcp85(length(max_Qout_yearmean_rcp26)) - min_Qout_yearmean_rcp85(length(max_Qout_yearmean_rcp26))
+(mean(mean(Qout_yearmean_rcp26)) + mean(mean(Qout_yearmean_rcp45)) + mean(mean(Qout_yearmean_rcp85)))/3
+
+Qout_mean_ac_rcp26 = mean(Qout_yearmean_rcp26,1);
+Qout_mean_ac_rcp45 = mean(Qout_yearmean_rcp45,1);
+Qout_mean_ac_rcp85 = mean(Qout_yearmean_rcp85,1);
+
+mean_Qout_ac = (Qout_yearmean_rcp26(length(Qout_yearmean_rcp26))+ ...
+Qout_yearmean_rcp45(length(Qout_yearmean_rcp45))+ Qout_yearmean_rcp85(length(Qout_yearmean_rcp85)))/3;
+
+% plot
+x = 1:length(min_Qout_yearmean_rcp26); 
+x2 = [x, fliplr(x)];
+
+% rcp26
+range_rcp26 = [min_Qout_yearmean_rcp26, fliplr(max_Qout_yearmean_rcp26)];
+f1 = fill(x2, range_rcp26*10^-6, blue_range);
+set(f1,'facealpha',.5)
+hold on
+plot(min_Qout_yearmean_rcp26*10^-6,'Color',blue_range)
+plot(max_Qout_yearmean_rcp26*10^-6,'Color',blue_range)
+
+% rcp 45
+range_rcp45 = [min_Qout_yearmean_rcp45, fliplr(max_Qout_yearmean_rcp45)];
+f2 = fill(x2, range_rcp45*10^-6, green_range);
+set(f2,'facealpha',.5)
+plot(min_Qout_yearmean_rcp45*10^-6,'Color',green_range)
+plot(max_Qout_yearmean_rcp45*10^-6,'Color',green_range)
+
+% rcp 85
+range_rcp85 = [min_Qout_yearmean_rcp85, fliplr(max_Qout_yearmean_rcp85)];
+f3=fill(x2, range_rcp85*10^-6, red_range);
+set(f3,'facealpha',.5)
+plot(min_Qout_yearmean_rcp85*10^-6,'Color',red_range)
+plot(max_Qout_yearmean_rcp85*10^-6,'Color',red_range)
+
+% plot multimodel means
+h2 = plot(mean(Qout_yearmean_rcp45,1)*10^-6,'Color',green,'linewidth',2);
+h3 = plot(mean(Qout_yearmean_rcp85,1)*10^-6,'Color',red,'linewidth',2);
+h1 = plot(mean(Qout_yearmean_rcp26,1)*10^-6,'Color',blue,'linewidth',2);
+
+title_name = 'High constant outflow scenario'; 
+
+legend([h1 h2 h3],'RCP 2.6', 'RCP 4.5', 'RCP 8.5')
+set(legend,'Fontweight', 'Bold', 'Fontsize', legend_size, 'TextColor', axcolor,'Location', 'northeast');
+hold off
+title(title_name,'Fontsize', title_size, 'Fontweight', 'Bold', 'color', axcolor)
+
+set(gca, 'Fontsize', label_size, 'Fontweight', 'Bold','Xcolor', axcolor,...
+        'Ycolor', axcolor,'xtick',[year_loc_fut_sing],'xticklabel',labels_fut,'xticklabelrotation',45); 
+%set(gca, 'Fontsize', 11, 'Fontweight', 'Bold','Xcolor', axcolor,...
+     %   'Ycolor', axcolor,'xtick',[year_loc_ev],'xticklabel',labels_ev,'xticklabelrotation',45); 
+ylabel('outlfow (10^6 m^3/day)','Fontsize', ylabel_size, 'Fontweight', 'Bold', 'color', axcolor)
+    grid on
+xlim([1 length(years)-1])    
+ylim([0 300])
+
+%% subplot 4: outflow following constant outflow scenarios. 
+% load
+subplot(2,1,2)
+if flag_bc == 1 % QUANT 
+    load Qout_rcp85_min_QUANT.mat 
+    load Qout_rcp45_min_QUANT.mat 
+    load Qout_rcp26_max_QUANT.mat  
+elseif flag_bc ==2 % PFT
+    load Qout_rcp85_min_PFT.mat 
+    load Qout_rcp45_min_PFT.mat
+    load Qout_rcp26_min_PFT.mat 
+end
+
+% remove HIRHAM
+n_HIRHAM8 = 5; 
+n_HIRHAM = 7; 
+Qout_rcp45ii = exclude_sim(Qout_rcp45,n_HIRHAM); 
+Qout_rcp85i = exclude_sim(Qout_rcp85,n_HIRHAM8); 
+clear Qout_rcp45 Qout_rcp85
+Qout_rcp45 = Qout_rcp45ii;
+Qout_rcp85 = Qout_rcp85i;
+
+% manipulate
+nm_rcp45 = size(Qout_rcp45,1); 
+nm_rcp26 = size(Qout_rcp26,1);
+nm_rcp85 = size(Qout_rcp85,1);
+
+% calculate annual mean outflow
+for i = 1:nm_rcp26
+    for t = 1:(length(years)-1)
+             Qout_yearmean_rcp26(i,t) = nanmean(Qout_rcp26(i,(ind_year(t):(ind_year(t+1)-1)))); 
+    end 
+end
+for i = 1:nm_rcp45
+    for t = 1:(length(years)-1)
+             Qout_yearmean_rcp45(i,t) = nanmean(Qout_rcp45(i,(ind_year(t):(ind_year(t+1)-1)))); 
+    end 
+end
+for i = 1:nm_rcp85
+    for t = 1:(length(years)-1)
+             Qout_yearmean_rcp85(i,t) = nanmean(Qout_rcp85(i,(ind_year(t):(ind_year(t+1)-1)))); 
+    end 
+end
+ 
+% define ranges
+min_Qout_yearmean_rcp45 = prctile(Qout_yearmean_rcp45,[prct_low],1); 
+min_Qout_yearmean_rcp85= prctile(Qout_yearmean_rcp85,[prct_low],1); 
+min_Qout_yearmean_rcp26 = prctile(Qout_yearmean_rcp26,[prct_low],1); 
+
+max_Qout_yearmean_rcp85 = prctile(Qout_yearmean_rcp85,[prct_high],1);    
+max_Qout_yearmean_rcp45 = prctile(Qout_yearmean_rcp45,[prct_high],1);     
+max_Qout_yearmean_rcp26 = prctile(Qout_yearmean_rcp26,[prct_high],1); 
+
+% calculate difference on end of period
+diff_Qout_rcp26_ac = max_Qout_yearmean_rcp26(length(max_Qout_yearmean_rcp26)) - min_Qout_yearmean_rcp26(length(max_Qout_yearmean_rcp26)) 
+diff_Qout_rcp45_ac = max_Qout_yearmean_rcp45(length(max_Qout_yearmean_rcp26)) - min_Qout_yearmean_rcp45(length(max_Qout_yearmean_rcp26))
+diff_Qout_rcp85_ac = max_Qout_yearmean_rcp85(length(max_Qout_yearmean_rcp26)) - min_Qout_yearmean_rcp85(length(max_Qout_yearmean_rcp26))
+(mean(mean(Qout_yearmean_rcp26)) + mean(mean(Qout_yearmean_rcp45)) + mean(mean(Qout_yearmean_rcp85)))/3
+
+Qout_mean_ac_rcp26 = mean(Qout_yearmean_rcp26,1);
+Qout_mean_ac_rcp45 = mean(Qout_yearmean_rcp45,1);
+Qout_mean_ac_rcp85 = mean(Qout_yearmean_rcp85,1);
+
+mean_Qout_ac = (Qout_yearmean_rcp26(length(Qout_yearmean_rcp26))+ ...
+Qout_yearmean_rcp45(length(Qout_yearmean_rcp45))+ Qout_yearmean_rcp85(length(Qout_yearmean_rcp85)))/3;
+
+% plot
+x = 1:length(min_Qout_yearmean_rcp26); 
+x2 = [x, fliplr(x)];
+
+% rcp26
+range_rcp26 = [min_Qout_yearmean_rcp26, fliplr(max_Qout_yearmean_rcp26)];
+f1 = fill(x2, range_rcp26*10^-6, blue_range);
+set(f1,'facealpha',.5)
+hold on
+plot(min_Qout_yearmean_rcp26*10^-6,'Color',blue_range)
+plot(max_Qout_yearmean_rcp26*10^-6,'Color',blue_range)
+
+% rcp 45
+range_rcp45 = [min_Qout_yearmean_rcp45, fliplr(max_Qout_yearmean_rcp45)];
+f2 = fill(x2, range_rcp45*10^-6, green_range);
+set(f2,'facealpha',.5)
+plot(min_Qout_yearmean_rcp45*10^-6,'Color',green_range)
+plot(max_Qout_yearmean_rcp45*10^-6,'Color',green_range)
+
+% rcp 85
+range_rcp85 = [min_Qout_yearmean_rcp85, fliplr(max_Qout_yearmean_rcp85)];
+f3=fill(x2, range_rcp85*10^-6, red_range);
+set(f3,'facealpha',.5)
+plot(min_Qout_yearmean_rcp85*10^-6,'Color',red_range)
+plot(max_Qout_yearmean_rcp85*10^-6,'Color',red_range)
+
+% plot multimodel means
+h2 = plot(mean(Qout_yearmean_rcp45,1)*10^-6,'Color',green,'linewidth',2);
+h3 = plot(mean(Qout_yearmean_rcp85,1)*10^-6,'Color',red,'linewidth',2);
+h1 = plot(mean(Qout_yearmean_rcp26,1)*10^-6,'Color',blue,'linewidth',2);
+
+title_name = 'Low constant outflow scenario'; 
+
+
+hold off
+title(title_name,'Fontsize', title_size, 'Fontweight', 'Bold', 'color', axcolor)
+
+set(gca, 'Fontsize', label_size, 'Fontweight', 'Bold','Xcolor', axcolor,...
+        'Ycolor', axcolor,'xtick',[year_loc_fut_sing],'xticklabel',labels_fut,'xticklabelrotation',45); 
+%set(gca, 'Fontsize', 11, 'Fontweight', 'Bold','Xcolor', axcolor,...
+     %   'Ycolor', axcolor,'xtick',[year_loc_ev],'xticklabel',labels_ev,'xticklabelrotation',45); 
+ylabel('outlfow (10^6 m^3/day)','Fontsize', ylabel_size, 'Fontweight', 'Bold', 'color', axcolor)
+    grid on
+xlim([1 length(years)-1])    
+ylim([0 300])
+
+
+%%
+
+
+% annotations and title
+
+annotation(figure2,'textbox',...
+    [0.13225 0.895299145299145 0.0161875 0.032051282051282],'String','a)',...
+    'LineStyle','none',...
+    'FontWeight','bold',...
+    'FontSize',14,...
+    'Color', axcolor, ...
+    'FitBoxToText','off');
+
+annotation(figure2,'textbox',...
     [0.133552083333333 0.418269230769231 0.0161875 0.032051282051282],...
     'String','b)',...
     'LineStyle','none',...

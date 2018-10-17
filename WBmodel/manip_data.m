@@ -4,6 +4,7 @@
 %       2. calculate lake surface
 %       3. manipulate lake level series
 %       4. manipulate outflow series (based on outflow scenario)
+%       5. manipulate lake bathymetry (regridding)
 %                   
 % --------------------------------------------------------------------
 
@@ -100,4 +101,30 @@ elseif flag_outscen < 3
 else
     Qout = 0;  % exact values are calculated within WB model
 end
+
+% 5. manipulate lake bathymetry
+% (similar grid as LHF)
+
+[depth_intp(:,:), lat_intp, lon_intp] = ...
+      remap2owngrid(depth_CCLM(:,:), lat_CCLM, lon_CCLM); 
+
+ depth_lake_temp(:,:) = mask_lake_intp.*depth_intp(:,:);
+
+% regridding to own grid: define remapping lon and lat
+pixel_owngrid = [62 47]; 
+pixel_LHF = [27 37]; 
+[indx_nan,~] = find(~isnan(lat_intp(:,1))); 
+[~,indy_nan] = find(~isnan(lon_intp(1,:))); 
+lat_pix_owngrid = lat_grid(pixel_owngrid(1));
+lon_pix_owngrid = lon_grid(pixel_owngrid(2));
+
+lat_begin_pix_LHF = lat_pix_owngrid-27*res_grid; 
+lon_begin_pix_LHF = lon_pix_owngrid-37*res_grid; 
+lat_end_pix_LHF = lat_begin_pix_LHF+(length(indy_nan)-1)*res_grid; 
+lon_end_pix_LHF = lon_begin_pix_LHF+(length(indx_nan)-1)*res_grid; 
+
+lat_LHF_remap = lat_begin_pix_LHF:res_grid:lat_end_pix_LHF; 
+lon_LHF_remap = lon_begin_pix_LHF:res_grid:lon_end_pix_LHF; 
+
+depth_lake = depth_lake_temp(1:length(lon_LHF_remap),1:length(lat_LHF_remap),:); 
 

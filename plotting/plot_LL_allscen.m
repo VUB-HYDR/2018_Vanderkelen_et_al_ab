@@ -10,26 +10,26 @@ prct_low = 5;
 prct_high = 95; 
 
 % figure element sizes
-ylimit = [1080 1182]; 
+ylimit = [1120 1160]; 
 legend_size = 10; 
 title_size = 14; 
 ylabel_size = 12; 
 label_size = 11; 
 % initialisation
 figure1 = figure();
-plotting;
+main_plotting;
 
 % time variable and labels
-time_end_fut = [2099, 12, 31, 0,0,0]; 
+time_end_fut = [2100, 12, 31, 0,0,0]; 
 date_vec_tot= datevec(datenum(time_begin_hist):1:datenum(time_end_fut));
 date_tot = date_vec_tot(:,1:3);
-date_2006=[2005 1 1]; 
+date_2006=[2006 1 1]; 
 [~, loc_2006] = ismember(date_2006,date_tot,'rows'); 
 temp_allyears = date_tot(:,1); 
-year_tot = time_begin_hist:10:time_end_fut; 
+year_tot = time_begin_hist-1:10:time_end_fut; 
 [~, year_loc] = ismember(year_tot,temp_allyears);
-year_loc(length(year_loc)+1)=year_loc(length(year_loc))+(365*10); 
-labels = {'1950','1960','1970','1980','1990','2000','2010','2020','2030',...
+year_loc(1) = 1; 
+labels = {'1951','1960','1970','1980','1990','2000','2010','2020','2030',...
     '2040', '2050','2060', '2070','2080','2090','2100'};
 
 
@@ -52,15 +52,12 @@ end
 
 % manipulate
 
-% remove HIRHAM and CRCM5 CanESM2
-n_HIRHAM = 5; 
-n_CRCM = 7; 
-L_rcp45i = exclude_sim(L_rcp45,n_CRCM);
-L_rcp45ii = exclude_sim(L_rcp45i,n_HIRHAM); 
-L_rcp85i = exclude_sim(L_rcp85,n_HIRHAM); 
-clear L_rcp45 L_rcp85
+
+n_HIRHAM = 7; 
+
+ L_rcp45ii = exclude_sim(L_rcp45,n_HIRHAM); 
+clear L_rcp45
 L_rcp45 = L_rcp45ii;
-L_rcp85 = L_rcp85i;
 
 L_tot_hist = NaN(length(date_tot),1); 
 L_tot_rcp26 = NaN(length(date_tot),1); 
@@ -167,16 +164,20 @@ elseif flag_bc ==2 % PFT
     load L_rcp26_cstout_min_PFT.mat 
 end
 
-% remove HIRHAM and CRCM5 CanESM2
-n_HIRHAM = 5; 
-n_CRCM = 7; 
-L_rcp45i = exclude_sim(L_rcp45,n_CRCM);
-L_rcp45ii = exclude_sim(L_rcp45i,n_HIRHAM); 
-L_rcp85i = exclude_sim(L_rcp85,n_HIRHAM); 
-clear L_rcp45 L_rcp85
-L_rcp45 = L_rcp45ii;
-L_rcp85 = L_rcp85i;
+% % remove HIRHAM and CRCM5 CanESM2
+% n_HIRHAM = 5; 
+% n_CRCM = 7; 
+% L_rcp45i = exclude_sim(L_rcp45,n_CRCM);
+% L_rcp45ii = exclude_sim(L_rcp45i,n_HIRHAM); 
+% L_rcp85i = exclude_sim(L_rcp85,n_HIRHAM); 
+% clear L_rcp45 L_rcp85
+% L_rcp45 = L_rcp45ii;
+% L_rcp85 = L_rcp85i;
+n_HIRHAM = 7; 
 
+ L_rcp45ii = exclude_sim(L_rcp45,n_HIRHAM); 
+clear L_rcp45 
+L_rcp45 = L_rcp45ii;
 % manipulate
 
 L_tot_hist = NaN(length(date_tot),1); 
@@ -283,15 +284,22 @@ elseif flag_bc ==2 % PFT
     load L_rcp26_ac_PFT.mat  
 end
 
-% remove HIRHAM and CRCM5 CanESM2
-n_HIRHAM = 5; 
-n_CRCM = 7; 
-L_rcp45i = exclude_sim(L_rcp45,n_CRCM);
-L_rcp45ii = exclude_sim(L_rcp45i,n_HIRHAM); 
-L_rcp85i = exclude_sim(L_rcp85,n_HIRHAM); 
-clear L_rcp45 L_rcp85
+% % remove HIRHAM and CRCM5 CanESM2
+% n_HIRHAM = 5; 
+% n_CRCM = 7; 
+% L_rcp45i = exclude_sim(L_rcp45,n_CRCM);
+% L_rcp45ii = exclude_sim(L_rcp45i,n_HIRHAM); 
+% L_rcp85i = exclude_sim(L_rcp85,n_HIRHAM); 
+% clear L_rcp45 L_rcp85
+% L_rcp45 = L_rcp45ii;
+% L_rcp85 = L_rcp85i;
+n_HIRHAM = 7; 
+
+ L_rcp45ii = exclude_sim(L_rcp45,n_HIRHAM); 
+clear L_rcp45 
 L_rcp45 = L_rcp45ii;
-L_rcp85 = L_rcp85i;
+
+
 
 % manipulate
 L_tot_hist = NaN(length(date_tot),1); 

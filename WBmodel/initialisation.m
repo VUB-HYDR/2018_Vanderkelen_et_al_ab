@@ -41,9 +41,9 @@ EraInt = {'ECMWF-ERAINT'};
 
     elseif flag_run == 3 % historical
    
-        RCM(:,1) = [{'CCLM4-8-17_'}; {'CCLM4-8-17_'}; {'CCLM4-8-17_'}; {'CCLM4-8-17_'}; {'HIRHAM5_'} ;  {'CRCM5_'}     ; {'CRCM5_'} ;  {'RACMO22T_'}; {'RACMO22T_'} ;  {'RCA4_'}  ; {'RCA4_'}  ; {'RCA4_'}   ; {'RCA4_'}   ; {'RCA4_'}     ; {'RCA4_'}     ; {'RCA4_'} ; {'RCA4_'}     ; {'RCA4_'}     ; {'RCA4_'}         ; {'REMO2009_'}  ; {'REMO2009_'}  ; {'REMO2009_'} ; {'REMO2009_'} ; {'REMO2009_'}  ; {'REMO2009_'}];
-        GCM(:,1) = [{'CNRM-CM5'}   ; {'EC-EARTH'}   ; {'HadGEM2-ES'} ; {'MPI-ESM-LR'} ; {'EC-EARTH'} ;  {'MPI-ESM-LR'} ; {'CanESM2'};  {'EC-EARTH'} ; {'HadGEM2-ES'};  {'CanESM2'}; {'CM5A-MR'}; {'CNRM-CM5'}; {'EC-EARTH'}; {'GFDL-ESM2M'}; {'HadGEM2-ES'}; {'MIROC5'}; {'MPI-ESM-LR'}; {'NorESM1-M'} ; {'CSIRO-Mk3-6-0'}; {'HadGEM2-ES'} ; {'MPI-ESM-LR'} ; {'EC-EARTH'}  ; {'CM5A-LR'}   ; {'GFDL-ESM2G'} ;  {'MIROC5'}  ];
-        RCM_text(:,1) = [{'CCLM4-8-17 '}; {'CCLM4-8-17 '}; {'CCLM4-8-17 '}; {'CCLM4-8-17 '};  {'HIRHAM5 '};  {'CRCM5 '}     ; {'CRCM5 '}  ; {'RACMO22T '}; {'RACMO22T '} ;  {'RCA4 '}  ; {'RCA4 '}  ; {'RCA4 '}   ; {'RCA4 '}   ; {'RCA4 '}     ; {'RCA4 '}     ; {'RCA4 '} ; {'RCA4 '}     ; {'RCA4 '}     ; {'RCA4 '}         ; {'REMO2009 '}  ; {'REMO2009 '}  ; {'REMO2009 '} ; {'REMO2009 '} ; {'REMO2009 '}  ; {'REMO2009 '}];
+        RCM(:,1) = [{'CCLM4-8-17_'}; {'CCLM4-8-17_'}; {'CCLM4-8-17_'}; {'CCLM4-8-17_'};   {'CRCM5_'}     ; {'CRCM5_'} ; {'HIRHAM5_'} ;  {'RACMO22T_'}; {'RACMO22T_'} ;  {'RCA4_'}  ; {'RCA4_'}  ; {'RCA4_'}   ; {'RCA4_'}   ; {'RCA4_'}     ; {'RCA4_'}     ; {'RCA4_'} ; {'RCA4_'}     ; {'RCA4_'}     ; {'RCA4_'}         ; {'REMO2009_'}  ; {'REMO2009_'}  ; {'REMO2009_'} ; {'REMO2009_'} ; {'REMO2009_'}  ; {'REMO2009_'}];
+        GCM(:,1) = [{'CNRM-CM5'}   ; {'EC-EARTH'}   ; {'HadGEM2-ES'} ; {'MPI-ESM-LR'} ;   {'MPI-ESM-LR'} ; {'CanESM2'}; {'EC-EARTH'} ; {'EC-EARTH'} ; {'HadGEM2-ES'};  {'CanESM2'}; {'CM5A-MR'}; {'CNRM-CM5'}; {'EC-EARTH'}; {'GFDL-ESM2M'}; {'HadGEM2-ES'}; {'MIROC5'}; {'MPI-ESM-LR'}; {'NorESM1-M'} ; {'CSIRO-Mk3-6-0'}; {'HadGEM2-ES'} ; {'MPI-ESM-LR'} ; {'EC-EARTH'}  ; {'CM5A-LR'}   ; {'GFDL-ESM2G'} ;  {'MIROC5'}  ];
+        RCM_text(:,1) = [{'CCLM4-8-17 '}; {'CCLM4-8-17 '}; {'CCLM4-8-17 '}; {'CCLM4-8-17 '};   {'CRCM5 '}     ; {'CRCM5 '}  ; {'HIRHAM5 '}; {'RACMO22T '}; {'RACMO22T '} ;  {'RCA4 '}  ; {'RCA4 '}  ; {'RCA4 '}   ; {'RCA4 '}   ; {'RCA4 '}     ; {'RCA4 '}     ; {'RCA4 '} ; {'RCA4 '}     ; {'RCA4 '}     ; {'RCA4 '}         ; {'REMO2009 '}  ; {'REMO2009 '}  ; {'REMO2009 '} ; {'REMO2009 '} ; {'REMO2009 '}  ; {'REMO2009 '}];
 
     elseif flag_run == 4 % rcp 2.6
    
@@ -53,9 +53,9 @@ EraInt = {'ECMWF-ERAINT'};
 
     elseif flag_run == 5 % rcp 45
     
-        RCM(:,1) = [{'CCLM4-8-17_'}; {'CCLM4-8-17_'}; {'CCLM4-8-17_'}; {'CCLM4-8-17_'};  {'HIRHAM5_'} ;  {'CRCM5_'}     ; {'CRCM5_'} ;{'RACMO22T_'} ; {'RACMO22T_'} ;  {'RCA4_'}  ; {'RCA4_'}  ; {'RCA4_'}   ; {'RCA4_'}   ; {'RCA4_'}     ; {'RCA4_'}     ; {'RCA4_'} ; {'RCA4_'}     ; {'RCA4_'}     ; {'RCA4_'}        ; {'REMO2009_'}  ; {'REMO2009_'} ];
-        GCM(:,1) = [{'CNRM-CM5'}   ; {'EC-EARTH'}   ; {'HadGEM2-ES'} ; {'MPI-ESM-LR'} ;  {'EC-EARTH'} ; {'MPI-ESM-LR'}  ; {'CanESM2'} ;{'EC-EARTH'} ; {'HadGEM2-ES'};  {'CanESM2'}; {'CM5A-MR'}; {'CNRM-CM5'}; {'EC-EARTH'}; {'GFDL-ESM2M'}; {'HadGEM2-ES'}; {'MIROC5'}; {'MPI-ESM-LR'}; {'NorESM1-M'} ; {'CSIRO-Mk3-6-0'}; {'MPI-ESM-LR'} ; {'EC-EARTH'}   ];
-        RCM_text(:,1) = [{'CCLM4-8-17 '}; {'CCLM4-8-17 '}; {'CCLM4-8-17 '}; {'CCLM4-8-17 '};  {'HIRHAM5 '} ;  {'CRCM5 '} ; {'CRCM5 '} ;{'RACMO22T '} ; {'RACMO22T '} ;  {'RCA4 '}  ; {'RCA4 '}  ; {'RCA4 '}   ; {'RCA4 '}   ; {'RCA4 '}     ; {'RCA4 '}     ; {'RCA4 '} ; {'RCA4 '}     ; {'RCA4 '}     ; {'RCA4 '}        ; {'REMO2009 '}  ; {'REMO2009 '} ];
+        RCM(:,1) = [{'CCLM4-8-17_'}; {'CCLM4-8-17_'}; {'CCLM4-8-17_'}; {'CCLM4-8-17_'};  {'CRCM5_'}      ; {'CRCM5_'}  ;{'HIRHAM5_'}  ;{'RACMO22T_'} ; {'RACMO22T_'} ;  {'RCA4_'}  ; {'RCA4_'}  ; {'RCA4_'}   ; {'RCA4_'}   ; {'RCA4_'}     ; {'RCA4_'}     ; {'RCA4_'} ; {'RCA4_'}     ; {'RCA4_'}     ; {'RCA4_'}        ; {'REMO2009_'}  ; {'REMO2009_'} ];
+        GCM(:,1) = [{'CNRM-CM5'}   ; {'EC-EARTH'}   ; {'HadGEM2-ES'} ; {'MPI-ESM-LR'}  ; {'MPI-ESM-LR'}  ; {'CanESM2'} ;  {'EC-EARTH'};{'EC-EARTH'} ; {'HadGEM2-ES'};  {'CanESM2'}; {'CM5A-MR'}; {'CNRM-CM5'}; {'EC-EARTH'}; {'GFDL-ESM2M'}; {'HadGEM2-ES'}; {'MIROC5'}; {'MPI-ESM-LR'}; {'NorESM1-M'} ; {'CSIRO-Mk3-6-0'}; {'MPI-ESM-LR'} ; {'EC-EARTH'}   ];
+        RCM_text(:,1) = [{'CCLM4-8-17 '}; {'CCLM4-8-17 '}; {'CCLM4-8-17 '}; {'CCLM4-8-17 '}; {'CRCM5 '} ; {'CRCM5 '} ;{'HIRHAM5 '} ; {'RACMO22T '} ; {'RACMO22T '} ;  {'RCA4 '}  ; {'RCA4 '}  ; {'RCA4 '}   ; {'RCA4 '}   ; {'RCA4 '}     ; {'RCA4 '}     ; {'RCA4 '} ; {'RCA4 '}     ; {'RCA4 '}     ; {'RCA4 '}        ; {'REMO2009 '}  ; {'REMO2009 '} ];
 
     elseif flag_run == 6 %  rcp 85
         
@@ -68,7 +68,7 @@ EraInt = {'ECMWF-ERAINT'};
     RCM_all(:,1)= [{'CCLM4-8-17'}; {'CRCM5'} ;  {'HIRHAM5'} ; {'RACMO22T'}; {'RCA4'} ; {'REMO2009'}];
    
     
-% detemine number of models 
+% determine number of models 
 if flag_run == 1
     nm = 1;    
 else

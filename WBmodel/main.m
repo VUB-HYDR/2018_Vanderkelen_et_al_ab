@@ -8,16 +8,16 @@
 % References:
 % - Vanderkelen, I., van Lipzig, N. P. M., and Thiery, W., 2018a. Modelling 
 % the water balance of Lake Victoria (East Africa) – Part 1: Observational 
-% analysis, Hydrol. Earth Syst. Sci. Discuss., in review.
+% analysis, Hydrol. Earth Syst. Sci., accepted. 
 % - Vanderkelen, I., van Lipzig, N. P. M. and Thiery, W., 2018b. Modelling 
 % the water balance of Lake Victoria (East Africa) – Part 2: Future 
-% projections, Hydrol. Earth Syst. Sci. Discuss., in review.
+% projections, Hydrol. Earth Syst. Sci., accepted.
 % --------------------------------------------------------------------
 
 % clean up
 clc;
 clear all;
-close all;
+%close all;
 
 tic
 
@@ -25,7 +25,7 @@ tic
 addpath(genpath('C:\Users\ivand\Documents\MATLAB\WBM_LakeVictoria'));
 
 % 1. User options 
-% --------------------------------------------------------------------
+% ------------------------------------------------------------------------
 
 % initialise run:   # 1 : observation run       (1993-2014)
 %                   # 2 : CORDEX evaluation run (1999-2008)
@@ -34,26 +34,27 @@ addpath(genpath('C:\Users\ivand\Documents\MATLAB\WBM_LakeVictoria'));
 %                   # 5 : CORDEX RCP 45 run     (2005-2100)
 %                   # 6 : CORDEX RCP 85 run     (2005-2100)
 
-flag_run = 5;
+flag_run = 4;
 
 % initialise type run: # 1 : full run (calculate all terms from netcdf files; only for observation run)
 %                      # 2 : load saved WB terms (goes quicker)
 
 
-flag_type = 1; 
+flag_type = 2; 
 
 % initialise bias correction type: #0 : no bias correction
 %                                  #1 : QUANT (empirical quantiles)
-%                                  #2 : PFT linear(parametric
+%                                  #2 : PFT linear (parametric
 %                                  transformation) 
 %                                  
-flag_bc = 0; 
+flag_bc = 2; 
 
-% initialise outflow scenario: #1: constant outflow max
-%                              #2: constant outflow min
+% initialise outflow scenario: #1: historical HPP (see script determ_Pel for value)
+%                              #2: maximum HPP (see script determ_Pel for value)
 %                              #3: constant lake level
 %                              #4: according to Agreed Curve
-flag_outscen = 4; 
+% (not necessary when observational run: observed lake levels are taken) 
+flag_outscen = 1; 
 
 
 % 2. Initialisation
@@ -89,13 +90,13 @@ if flag_run == 1
         
         end
         
-elseif flag_run > 1 | flag_type == 2
+elseif flag_type == 2
     
         load_WBterms; 
 
-end 
- 
-    WBmodel;  
+end
+
+WBmodel;
 
 toc
 
@@ -104,3 +105,6 @@ toc
 % 5. Plotting
 
 main_plotting
+
+% save the lake level simulation for plotting. 
+%save_L

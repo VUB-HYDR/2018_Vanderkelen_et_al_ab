@@ -9,7 +9,7 @@ library(qmap)
 
 
 # set working directory
-setwd("~/MATLAB/Thesis/Rscripts/data")
+setwd("~/MATLAB/WBM_LakeVictoria/data/biascorrection")
 
 
 # read csv files
@@ -197,7 +197,6 @@ for (i in 1:nm){
   qm.fit<-qm_P[[id_rcp26[i]]]
   qm.a <- doQmapPTF(mod,qm.fit)  
   bcdata[,i] <- qm.a
-  print(i)
 }
 
 # wite bc data to csv
@@ -247,7 +246,7 @@ E_wb_rcp45 <- read.csv("E_wb_rcp45.csv", header=FALSE)
 P_wb_rcp45 <- read.csv("P_wb_rcp45.csv", header=FALSE)   
 Qin_wb_rcp45 <- read.csv("Qin_wb_rcp45.csv", header=FALSE)   
 #id_rcp45 <- c(1,	2,	3,	4,	5, 6, 7, 8,9,	10,	11,	12,	13,	14,	15,	16,	17,	18,	19,	21,22)
-id_rcp45 <- c(1,	2,	3,	4,	5, 6, 7,8,9,	10,	11,	12,	13,	14,	15,	16,	17,	18,	19,	21,22)
+id_rcp45 <- c(1,	2,	3,	4, 	5, 6, 7, 8 ,9 ,	10,	11,	12,	13,	14,	15,	16,	17,	18,	19,	21,22)
 
 # initialise bc data
 bcdata <-E_wb_rcp45
@@ -350,7 +349,7 @@ E_wb_rcp85 <- read.csv("E_wb_rcp85.csv", header=FALSE)
 P_wb_rcp85 <- read.csv("P_wb_rcp85.csv", header=FALSE)   
 Qin_wb_rcp85 <- read.csv("Qin_wb_rcp85.csv", header=FALSE)
 
-id_rcp85<-c(1,2,3,	4,	5,	9,	10,	11,	12,	13,	14,	15,	16,	17,	18,19,	21,	22,	23)
+id_rcp85<-c(1,2,3,	4,	7,	9,	10,	11,	12,	13,	14,	15,	16,	17,	18,19,	21,	22,	23)
 # initialise bc data
 bcdata <-E_wb_rcp85
 # initialise number of simulations

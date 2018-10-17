@@ -32,15 +32,16 @@ shp_basin = shp_basin.shp_basin;
 
 % 3. Load longitude and latitude of CCLM grid
 % ------------------------------------------------------------------------
-% load lon_P.mat
-% load lat_P.mat
+ load lon_grid.mat
+ load lat_grid.mat
 
 nc = 0; 
 [lat_CCLM, lon_CCLM, depth_CCLM] = mf_load('lffd1996010100c.nc', 'DEPTH_LK', nc);
-
-
 
 % 4. Load outflow
 % ------------------------------------------------------------------------
 load outflow.mat
 
+% 5. Load DEM 
+% ------------------------------------------------------------------------
+%load_DEM
