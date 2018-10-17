@@ -2,6 +2,8 @@
 
 Data analysis and modelling used in Vanderkelen et al., 2018 a and b.
 
+[![DOI](https://zenodo.org/badge/130857099.svg)](https://zenodo.org/badge/latestdoi/130857099)
+
 
 ## For users
 This repository includes the processing scripts of the Water Balance Model 
