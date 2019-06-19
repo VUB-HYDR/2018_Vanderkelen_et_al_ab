@@ -64,12 +64,11 @@ file.
 ## References
 Vanderkelen, I., van Lipzig, N. P. M., and Thiery, W.: Modelling the water 
 balance of Lake Victoria (East Africa) – Part 1: Observational analysis, Hydrol. 
-Earth Syst. Sci. Discuss., 
-[https://doi.org/10.5194/hess-2018-11](https://doi.org/10.5194/hess-2018-11), 
-accepted, 2018. 
+Hydrol. Earth Syst. Sci., 22, 5509–5525, 2018. 
+[https://doi.org/10.5194/hess-22-5509-2018](https://doi.org/10.5194/hess-22-5509-2018).
+
 
 Vanderkelen, I., van Lipzig, N. P. M., and Thiery, W.: Modelling the water 
-balance of Lake Victoria (East Africa), part 2: future projections, Hydrol. 
-Earth Syst. Sci., 
-[https://doi.org/10.5194/hess-2018-160](https://doi.org/10.5194/hess-2018-160]), 2018. 
+balance of Lake Victoria (East Africa), part 2: future projections, Hydrol. Earth Syst. Sci., 22, 5527–5549, 2018.L
+[https://doi.org/10.5194/hess-22-5527-2018](https://doi.org/10.5194/hess-22-5527-2018).
 
