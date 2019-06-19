@@ -70,7 +70,6 @@ accepted, 2018.
 
 Vanderkelen, I., van Lipzig, N. P. M., and Thiery, W.: Modelling the water 
 balance of Lake Victoria (East Africa), part 2: future projections, Hydrol. 
-Earth Syst. Sci. Discuss., 
-[https://doi.org/10.5194/hess-2018-160](https://doi.org/10.5194/hess-2018-160]), 
-in review, 2018. 
+Earth Syst. Sci., 
+[https://doi.org/10.5194/hess-2018-160](https://doi.org/10.5194/hess-2018-160]), 2018. 
 
